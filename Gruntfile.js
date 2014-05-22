@@ -172,6 +172,7 @@ module.exports = function (grunt) {
       debug: {
         script: 'server.js',
         options: {
+          watch: [ 'lib' ],
           nodeArgs: ['--debug-brk'],
           env: {
             PORT: process.env.PORT || 9000
