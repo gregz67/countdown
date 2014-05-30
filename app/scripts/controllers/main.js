@@ -6,6 +6,8 @@ angular.module('countdownApp')
       $scope.awesomeThings = awesomeThings;
     });
     $http.get('/api/events').success(function(events) {
-      $scope.events = events;
+      $scope.events = events.map(function(event) {
+        return new Date(event);
+      });
     });
   });
