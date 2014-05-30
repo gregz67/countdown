@@ -7,7 +7,9 @@ angular.module('countdownApp')
     });
     $http.get('/api/events').success(function(events) {
       $scope.events = events.map(function(event) {
-        return new Date(event);
+        // convert json string to Date
+        event.date = new Date(event.date);
+        return event;
       });
     });
   });

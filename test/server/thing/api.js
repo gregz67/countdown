@@ -33,11 +33,12 @@ describe('GET /api/events', function() {
           return done(err);
         }
         res.body.should.be.instanceof(Array);
-        res.body.should.have.length(1);
-        var event = new Date(res.body[0]);
-        event.should.be.instanceof(Date);
+        res.body.should.have.length(2);
+        expect(isNaN(Date.parse(res.body[0].date))).to.be.false;
         done();
       });
   });
+
+  it('should respond')
 
 });
