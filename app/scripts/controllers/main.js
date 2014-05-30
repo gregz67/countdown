@@ -5,4 +5,7 @@ angular.module('countdownApp')
     $http.get('/api/awesomeThings').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;
     });
+    $http.get('/api/events').success(function(events) {
+      $scope.events = events;
+    });
   });
