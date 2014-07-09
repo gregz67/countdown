@@ -420,7 +420,7 @@ module.exports = function (grunt) {
       prod: {
         NODE_ENV: 'production'
       },
-      all: require('./server/config/local.env')
+      all: require('./server/config/local-fake.env.js')
     },
 
     // Compiles Sass to CSS
