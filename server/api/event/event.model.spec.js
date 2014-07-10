@@ -24,13 +24,6 @@ describe('Event Model', function() {
     });
   });
 
-  it('should begin with no events', function(done) {
-    Event.find({}, function(err, events) {
-      expect(events).to.have.length(0);
-      done();
-    });
-  });
-
   it('should contain a date field', function(done) {
     event.save(function(err, event) {
       expect(err).to.not.exist;
