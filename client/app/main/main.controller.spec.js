@@ -15,6 +15,17 @@ describe('Controller: MainCtrl', function () {
     $httpBackend = _$httpBackend_;
     $httpBackend.expectGET('/api/things')
       .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
+    $httpBackend.expectGET('/api/events')
+      .respond([
+        {
+          name: 'Christmas',
+          date: new Date(2014, 12, 25, 0, 0, 0, 0)
+        },
+        {
+          name: 'New Year\'s',
+          date: new Date(2015, 1, 1, 0, 0, 0, 0)
+        }
+      ]);
 
     scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
@@ -25,5 +36,10 @@ describe('Controller: MainCtrl', function () {
   it('should attach a list of things to the scope', function () {
     $httpBackend.flush();
     expect(scope.awesomeThings.length).toBe(4);
+  });
+
+  it('should attach a list of events to the scope', function () {
+    $httpBackend.flush();
+    expect(scope.events.length).toBe(2);
   });
 });

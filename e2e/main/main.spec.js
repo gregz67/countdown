@@ -20,4 +20,11 @@ describe('Main View', function() {
       expect(count).toBe(6);
     });
   });
+
+  it('should render events', function() {
+    expect(page.firstEventNameEl.getText()).toContain('Christmas');
+    page.eventsCount.then(function(count) {
+      expect(count).toBe(2);
+    });
+  });
 });

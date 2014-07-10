@@ -14,6 +14,10 @@ var MainPage = function() {
   this.repeater = by.repeater('thing in awesomeThings');
   this.firstAwesomeThingNameEl = element(this.repeater.row(0).column('{{thing.name}}'));
   this.awesomeThingsCount = element.all(this.repeater).count();
+
+  this.eventRepeater = by.repeater('event in events');
+  this.firstEventNameEl = element(this.eventRepeater.row(0).column('{{event.name}}'));
+  this.eventsCount = element.all(this.eventRepeater).count();
 };
 
 module.exports = new MainPage();

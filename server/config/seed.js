@@ -6,6 +6,7 @@
 'use strict';
 
 var Thing = require('../api/thing/thing.model');
+var Event = require('../api/event/event.model');
 var User = require('../api/user/user.model');
 
 Thing.find({}).remove(function() {
@@ -27,6 +28,16 @@ Thing.find({}).remove(function() {
   },{
     name : 'Deployment Ready',
     info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
+  });
+});
+
+Event.find({}).remove(function() {
+  Event.create({
+    name: 'Christmas',
+    date: new Date(2014, 12, 25, 0, 0, 0, 0)
+  }, {
+    name: 'New Year\'s',
+    date: new Date(2015, 1, 1, 0, 0, 0, 0)
   });
 });
 
