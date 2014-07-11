@@ -18,6 +18,7 @@
     </div>
   </div>
 
+
   <form class="thing-form">
     <label>Syncs in realtime across clients</label>
     <p class="input-group">
@@ -34,6 +35,28 @@
         <li>{{event.name}} - {{event.date}}</li>
     </ul>
   </div>
+
+  <p class="input-group">
+    <input type="text"
+           ng-model="newEvent.name"
+           placeholder="Add a new countdown here."
+           class="form-control" />
+    <input type="text"
+           ng-model="newEvent.date"
+           class="form-control"
+           placeholder="Date"
+           datepicker-popup="{{datepicker.format}}"
+           datepicker-options="datapicker.dateOptions"
+           min-date="{{datepicker.minDate}}"
+           is-open="opened"
+           ng-required="true" />
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default" ng-click="datepicker.open($event)">
+          <i class="glyphicon glyphicon-calendar"></i>
+      </button>
+    </span>
+  </p>
+
 </div>
 
 <footer class="footer">

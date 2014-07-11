@@ -37,7 +37,6 @@ angular.module('countdownApp')
       socket.syncUpdates('event', $scope.events);
     });
 
-    /*
     $scope.addEvent = function() {
       if($scope.newEvent === '') {
         return;
@@ -46,6 +45,20 @@ angular.module('countdownApp')
       $scope.newEvent = '';
     };
 
+    $scope.datepicker = {
+      format: 'longDate',
+      minDate: new Date(), // restrict to future dates
+      dateOptions: {
+        showWeeks: false
+      },
+      open: function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.opened = true;
+      }
+    };
+
+    /*
     $scope.deleteEvent = function(event) {
       $http.delete('/api/events/' + event._id);
     };

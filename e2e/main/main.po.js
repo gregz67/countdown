@@ -15,9 +15,16 @@ var MainPage = function() {
   this.firstAwesomeThingNameEl = element(this.repeater.row(0).column('{{thing.name}}'));
   this.awesomeThingsCount = element.all(this.repeater).count();
 
+  this.newThing = element(by.model('newThing'));
+
   this.eventRepeater = by.repeater('event in events');
   this.firstEventNameEl = element(this.eventRepeater.row(0).column('{{event.name}}'));
   this.eventsCount = element.all(this.eventRepeater).count();
+
+  this.newEventNameInput = element(by.model('newEvent.name'));
+  this.newEventDateInput = element(by.model('newEvent.date'));
+  this.newEventDatePickerButton = element(by.css('.glyphicon-calendar'));
+
 };
 
 module.exports = new MainPage();
