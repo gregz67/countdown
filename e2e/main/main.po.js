@@ -21,9 +21,7 @@ var MainPage = function() {
   this.firstEventNameEl = element(this.eventRepeater.row(0).column('{{event.name}}'));
   this.eventsCount = element.all(this.eventRepeater).count();
 
-  this.newEventNameInput = element(by.model('newEvent.name'));
-  this.newEventDateInput = element(by.model('newEvent.date'));
-  this.newEventDatePickerButton = element(by.css('.glyphicon-calendar'));
+  this.newEventForm = element(by.css('.event-form'));
 
 };
 

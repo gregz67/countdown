@@ -46,5 +46,9 @@ exports.config = {
   // See the full list at https://github.com/juliemr/minijasminenode
   jasmineNodeOpts: {
     defaultTimeoutInterval: 30000
+  },
+
+  onPrepare: function() {
+    browser.driver.manage().window().setSize(1200, 1000);
   }
 };
