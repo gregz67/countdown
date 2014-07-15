@@ -9,3 +9,11 @@ var EventSchema = new Schema({
 });
 
 module.exports = mongoose.model('Event', EventSchema);
+
+/**
+ * Validations
+ */
+EventSchema.path('date').validate(function(date) {
+  var now = new Date();
+  return (date - now) > 0;
+}, 'Date cannot be in the past');

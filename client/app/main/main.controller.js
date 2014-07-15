@@ -45,9 +45,11 @@ angular.module('countdownApp')
       $scope.newEvent = '';
     };
 
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
     $scope.datepicker = {
       format: 'longDate',
-      minDate: new Date(), // restrict to future dates
+      minDate: tomorrow, // restrict to future dates
       dateOptions: {
         showWeeks: false
       },

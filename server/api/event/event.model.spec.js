@@ -8,9 +8,11 @@ var event;
 describe('Event Model', function() {
 
   before(function(done) {
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
     event = new Event({
-      name: 'Now',
-      date: Date.now()
+      name: 'Tomorrow',
+      date: tomorrow
     });
 
     Event.remove().exec().then(function() {
@@ -32,4 +34,18 @@ describe('Event Model', function() {
       done();
     });
   });
+
+  it('should fail when saving when a date in the past', function(done) {
+    var yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    event = new Event({
+      name: 'Yesterday',
+      date: yesterday
+    });
+    event.save(function(err) {
+      expect(err).to.exist;
+      done();
+    });
+  });
+
 });
