@@ -4,6 +4,10 @@ angular.module('countdownApp')
   .controller('MainCtrl', function ($scope, $http, socket) {
     $scope.awesomeThings = [];
     $scope.events = [];
+    $scope.newEvent = {
+      name: '',
+      date: undefined
+    };
 
     /**
      * Things
@@ -38,11 +42,14 @@ angular.module('countdownApp')
     });
 
     $scope.addEvent = function() {
-      if($scope.newEvent === '') {
+      if($scope.newEvent.name === '' || $scope.newEvent.date === undefined) {
         return;
       }
-      $http.post('/api/events', { name: $scope.newEvent });
-      $scope.newEvent = '';
+      $http.post('/api/events', $scope.newEvent);
+      $scope.newEvent = {
+        name: '',
+        date: undefined
+      };
     };
 
     var tomorrow = new Date();

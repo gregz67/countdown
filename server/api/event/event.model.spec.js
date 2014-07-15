@@ -35,6 +35,14 @@ describe('Event Model', function() {
     });
   });
 
+  it('should fail when saving with a blank name', function(done) {
+    event.name = '';
+    event.save(function(err) {
+      expect(err).to.exist;
+      done();
+    });
+  });
+
   it('should fail when saving when a date in the past', function(done) {
     var yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);

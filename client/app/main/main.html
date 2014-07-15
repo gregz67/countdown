@@ -44,14 +44,15 @@
 
     <form class="event-form">
         <label>Create a new Countdown</label>
+
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-7">
                 <input type="text"
                        ng-model="newEvent.name"
                        placeholder="Name"
                        class="form-control"/>
             </div>
-            <div class="input-group col-lg-6">
+            <div class="input-group col-lg-4">
                 <input type="text"
                        ng-model="newEvent.date"
                        class="form-control"
@@ -61,11 +62,14 @@
                        min-date="{{datepicker.minDate}}"
                        is-open="opened"
                        ng-required="true"/>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="datepicker.open($event)">
-                  <i class="glyphicon glyphicon-calendar"></i>
-              </button>
-            </span>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="datepicker.open($event)">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
+            </div>
+            <div class="col-lg-1">
+                <button type="submit" class="btn btn-primary" ng-click="addEvent()">Add Event</button>
             </div>
         </div>
     </form>

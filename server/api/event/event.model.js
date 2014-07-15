@@ -13,6 +13,9 @@ module.exports = mongoose.model('Event', EventSchema);
 /**
  * Validations
  */
+EventSchema.path('name').validate(function(name) {
+  return name.length;
+});
 EventSchema.path('date').validate(function(date) {
   var now = new Date();
   return (date - now) > 0;

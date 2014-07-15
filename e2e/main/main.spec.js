@@ -39,4 +39,6 @@ describe('Main View', function() {
     expect(page.newEventDatePickerButton.isPresent()).toBe(true);
   });
 
+  
+
 });
