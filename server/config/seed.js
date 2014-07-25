@@ -34,10 +34,10 @@ Thing.find({}).remove(function() {
 Event.find({}).remove(function() {
   Event.create({
     name: 'Christmas',
-    date: new Date(2014, 12, 25, 0, 0, 0, 0)
+    date: new Date("12/25/2014")
   }, {
     name: 'New Year\'s',
-    date: new Date(2015, 1, 1, 0, 0, 0, 0)
+    date: new Date("01/01/2015")
   });
 });
 
