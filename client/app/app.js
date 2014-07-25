@@ -6,7 +6,8 @@ angular.module('countdownApp', [
   'ngSanitize',
   'ui.bootstrap',
   'ngRoute',
-  'btford.socket-io'
+  'btford.socket-io',
+  'angularMoment'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
