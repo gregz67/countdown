@@ -5,6 +5,7 @@ describe('Controller: MainCtrl', function () {
   // load the controller's module
   beforeEach(module('countdownApp'));
   beforeEach(module('socketMock'));
+  beforeEach(module('angularMoment'));
 
   var MainCtrl,
       scope,
