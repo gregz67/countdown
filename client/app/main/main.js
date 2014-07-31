@@ -7,4 +7,4 @@ angular.module('countdownApp')
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
       });
-  });
+});

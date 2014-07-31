@@ -1,12 +1,16 @@
 'use strict';
 
 angular.module('countdownApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, Auth, $http, socket) {
     $scope.awesomeThings = [];
     $scope.events = [];
     $scope.newEvent = {
       name: '',
       date: undefined
+    };
+
+    $scope.isLoggedIn = function() {
+      return Auth.isLoggedIn();
     };
 
     /**
