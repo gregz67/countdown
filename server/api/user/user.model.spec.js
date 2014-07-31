@@ -2,11 +2,15 @@
 
 var should = require('chai').should();
 var User = require('./user.model');
+var app = require('../../app');
+var request = require('supertest');
 
 var user;
 
 describe('User Model', function() {
+
   before(function(done) {
+    request(app);
     user = new User({
       provider: 'local',
       name: 'Fake User',

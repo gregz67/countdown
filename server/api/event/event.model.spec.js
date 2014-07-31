@@ -2,12 +2,15 @@
 
 var expect = require('chai').expect;
 var Event = require('./event.model');
+var app = require('../../app');
+var request = require('supertest');
 
 var event;
 
 describe('Event Model', function() {
 
   before(function(done) {
+    request(app);
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     event = new Event({
