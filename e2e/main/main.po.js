@@ -8,18 +8,13 @@
 var MainPage = function() {
   this.heroEl = element(by.css('.hero-unit'));
   this.h1El = this.heroEl.element(by.css('h1'));
+  this.signup = this.heroEl.element(by.css('a[href="/signup"]'));
+  this.login = this.heroEl.element(by.css('a[href="/login"]'));
   this.imgEl = this.heroEl.element(by.css('img'));
-  this.anchorEl = this.heroEl.element(by.css('a'));
-
-  this.repeater = by.repeater('thing in awesomeThings');
-  this.firstAwesomeThingNameEl = element(this.repeater.row(0).column('{{thing.name}}'));
-  this.awesomeThingsCount = element.all(this.repeater).count();
-
-  this.newThing = element(by.model('newThing'));
+  this.logoutEl = element(by.css('[ng-click="logout()"]'));
 
   this.eventRepeater = by.repeater('event in events');
   this.firstEventNameEl = element(this.eventRepeater.row(0).column('{{event.name}}'));
-  this.eventsCount = element.all(this.eventRepeater).count();
 
   this.newEventForm = element(by.css('.event-form'));
 

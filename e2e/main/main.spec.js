@@ -1,40 +1,48 @@
 'use strict';
 
-describe('Main View', function() {
-  var page;
+describe('Main View (logged out)', function() {
+  var mainpage;
 
   beforeEach(function() {
     browser.get('/');
-    page = require('./main.po');
+    mainpage = require('./main.po');
   });
 
   it('should include jumbotron with correct data', function() {
-    expect(page.h1El.getText()).toBe('\'Allo, \'Allo!');
-    expect(page.imgEl.getAttribute('src')).toMatch(/assets\/images\/yeoman.png$/);
-    expect(page.imgEl.getAttribute('alt')).toBe('I\'m Yeoman');
+    expect(mainpage.h1El.getText()).toBe('Countdown');
+    expect(mainpage.signup.isPresent()).toBe(true);
+    expect(mainpage.login.isPresent()).toBe(true);
+    expect(mainpage.imgEl.getAttribute('src')).toMatch(/assets\/images\/yeoman.png$/);
+    expect(mainpage.imgEl.getAttribute('alt')).toBe('I\'m Yeoman');
   });
 
-  xit('should render awesomeThings', function() {
-    expect(page.firstAwesomeThingNameEl.getText()).toContain('Development Tools');
-    page.awesomeThingsCount.then(function(count) {
-      expect(count).toBeGreaterThan(5);
-    });
+});
+
+describe('Main View (logged in)', function() {
+  var mainpage, loginpage;
+
+  beforeEach(function() {
+    browser.get('/login');
+    loginpage = require('./../login.po.js');
+
+    loginpage.emailInput.sendKeys('test@test.com');
+    loginpage.passwordInput.sendKeys('test');
+    loginpage.loginBtn.click();
+
+    mainpage = require('./main.po');
+
   });
 
-  xit('should render a newThing form', function() {
-    expect(page.newThing.isPresent()).toBe(true);
-    expect(page.newThing.getAttribute('placeholder')).toContain('new thing');
+  afterEach(function() {
+    mainpage.logoutEl.click();
   });
 
   it('should render events', function() {
-    expect(page.firstEventNameEl.getText()).toContain('Christmas');
-    page.eventsCount.then(function(count) {
-      expect(count).toBeGreaterThan(1);
-    });
+    expect(mainpage.firstEventNameEl.getText()).toContain('Christmas');
   });
 
   it('should render a newEvent form', function() {
-    expect(page.newEventForm.isPresent()).toBe(true);
+    expect(mainpage.newEventForm.isPresent()).toBe(true);
   });
 
 });

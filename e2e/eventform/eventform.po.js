@@ -18,6 +18,9 @@ var EventForm = function() {
   this.newEventDatePicker = this.newEventForm.element(by.css('.dropdown-menu'));
 
   this.newEventSubmitButton = this.newEventForm.element(by.css('[ng-click="addEvent()"]'));
+
+  this.logoutEl = element(by.css('[ng-click="logout()"]'));
+
 };
 
 module.exports = new EventForm();
