@@ -1,7 +1,7 @@
 'use strict';
 
 describe('Event Form', function() {
-  var loginpage, mainpage, startCount;
+  var loginpage, mainpage, startCount, nextyear;
 
   beforeEach(function() {
     browser.get('/login');
@@ -16,6 +16,8 @@ describe('Event Form', function() {
     mainpage.eventsList.count().then(function(count) {
       startCount = count;
     });
+
+    nextyear = (new Date()).getFullYear() + 1;
   });
 
   afterEach(function() {
@@ -35,7 +37,7 @@ describe('Event Form', function() {
   });
 
   it('should not add event when name is empty', function() {
-    mainpage.newEventDateInput.sendKeys('May 3, 2015');
+    mainpage.newEventDateInput.sendKeys('May 3, ' + nextyear);
     mainpage.newEventSubmitButton.click();
     mainpage.eventsList.count().then(function(count) {
       expect(count).toEqual(startCount);
@@ -53,7 +55,7 @@ describe('Event Form', function() {
 
   it('should add an event when submit is clicked', function() {
     mainpage.newEventNameInput.sendKeys('Birthday!');
-    mainpage.newEventDateInput.sendKeys('May 3, 2015');
+    mainpage.newEventDateInput.sendKeys('May 3, ' + nextyear);
     mainpage.newEventSubmitButton.click().then(function() {
       // get new count of events
       mainpage.eventsList.count().then(function(count) {
