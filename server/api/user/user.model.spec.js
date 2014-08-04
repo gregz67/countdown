@@ -1,6 +1,8 @@
 'use strict';
 
 var should = require('chai').should();
+var expect = require('chai').expect;
+
 var User = require('./user.model');
 var app = require('../../app');
 var request = require('supertest');
@@ -9,13 +11,21 @@ var user;
 
 describe('User Model', function() {
 
-  before(function(done) {
+  beforeEach(function(done) {
     request(app);
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
     user = new User({
       provider: 'local',
       name: 'Fake User',
       email: 'test@test.com',
-      password: 'password'
+      password: 'password',
+      events: [
+        {
+          name: 'Tomorrow',
+          date: tomorrow
+        }
+      ]
     });
 
     // Clear users before testing
@@ -38,7 +48,7 @@ describe('User Model', function() {
   });
 
   it('should fail when saving a duplicate user', function(done) {
-    user.save(function() {
+    user.save(function(err) {
       var userDup = new User(user);
       userDup.save(function(err) {
         should.exist(err);
@@ -62,4 +72,13 @@ describe('User Model', function() {
   it("should not authenticate user if password is invalid", function() {
     user.authenticate('blah').should.not.be.true;
   });
+
+  it("should include event embedded documents", function(done) {
+    user.save(function(err) {
+      should.not.exist(err);
+      expect(user.events).to.be.an.instanceof(Array);
+      done();
+    });
+  });
+
 });

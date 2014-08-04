@@ -4,7 +4,7 @@
 
 'use strict';
 
-var Event = require('./event.model');
+var Event = require('./event.schema.js');
 
 exports.register = function(socket) {
   Event.schema.post('save', function (doc) {

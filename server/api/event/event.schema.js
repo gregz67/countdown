@@ -8,7 +8,7 @@ var EventSchema = new Schema({
   date: Date
 });
 
-module.exports = mongoose.model('Event', EventSchema);
+module.exports = EventSchema;
 
 /**
  * Validations

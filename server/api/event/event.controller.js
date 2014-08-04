@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
-var Event = require('./event.model');
+var Event = require('./event.schema.js');
 
 // Get list of events
 exports.index = function(req, res) {

@@ -6,6 +6,8 @@ var crypto = require('crypto');
 
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
+var EventSchema = require('../event/event.schema.js');
+
 var UserSchema = new Schema({
   name: String,
   email: { type: String, lowercase: true },
@@ -13,6 +15,7 @@ var UserSchema = new Schema({
     type: String,
     default: 'user'
   },
+  events: [EventSchema],
   hashedPassword: String,
   provider: String,
   salt: String,

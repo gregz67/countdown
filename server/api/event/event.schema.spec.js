@@ -1,7 +1,9 @@
 'use strict';
 
+var mongoose = require('mongoose');
 var expect = require('chai').expect;
-var Event = require('./event.model');
+var EventSchema = require('./event.schema.js');
+var Event = mongoose.model('Event', EventSchema);
 var app = require('../../app');
 var request = require('supertest');
 
