@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 var expect = require('chai').expect;
+
 var EventSchema = require('./event.schema.js');
 var Event = mongoose.model('Event', EventSchema);
 var app = require('../../app');
@@ -9,7 +10,7 @@ var request = require('supertest');
 
 var event;
 
-describe('Event Model', function() {
+describe('Event Schema', function() {
 
   before(function(done) {
     request(app);

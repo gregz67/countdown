@@ -4,13 +4,13 @@
 
 'use strict';
 
-var Event = require('./event.schema.js');
+var EventSchema = require('./event.schema.js');
 
 exports.register = function(socket) {
-  Event.schema.post('save', function (doc) {
+  EventSchema.post('save', function (doc) {
     onSave(socket, doc);
   });
-  Event.schema.post('remove', function (doc) {
+  EventSchema.post('remove', function (doc) {
     onRemove(socket, doc);
   });
 }
