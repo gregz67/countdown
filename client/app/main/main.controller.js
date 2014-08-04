@@ -15,10 +15,12 @@ angular.module('countdownApp')
     /**
      * Events
      */
-    $http.get('/api/events').success(function(events) {
-      $scope.events = events;
-      socket.syncUpdates('event', $scope.events);
-    });
+    if (Auth.isLoggedIn()) {
+      $http.get('/api/events').success(function(events) {
+        $scope.events = events;
+        socket.syncUpdates('event', $scope.events);
+      });
+    }
 
     $scope.addEvent = function() {
       if($scope.newEvent.name === '' || $scope.newEvent.date === undefined) {
