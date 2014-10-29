@@ -16,10 +16,10 @@ User.find({}).remove(function() {
     events: [
       {
         name: 'Christmas',
-        date: new Date("12/25/2014")
+        date: new Date('12/25/2014')
       }, {
         name: 'New Year\'s',
-        date: new Date("01/01/2015")
+        date: new Date('01/01/2015')
       }
     ]
   }, {

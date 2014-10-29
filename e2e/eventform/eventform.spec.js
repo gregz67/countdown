@@ -22,7 +22,7 @@ describe('Event Form', function() {
 
   afterEach(function() {
     mainpage.logoutEl.click();
-  })
+  });
 
   it('should render a name/date field with datepicker button', function() {
     expect(mainpage.newEventNameInput.isPresent()).toBeTruthy();

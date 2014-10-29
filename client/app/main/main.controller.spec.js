@@ -8,32 +8,41 @@ describe('Controller: MainCtrl', function () {
   beforeEach(module('angularMoment'));
 
   var MainCtrl,
-      scope,
+      $scope,
       $httpBackend;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
     $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('/api/events')
-      .respond([
-        {
-          name: 'Christmas',
-          date: new Date(2014, 12, 25, 0, 0, 0, 0)
-        },
-        {
-          name: 'New Year\'s',
-          date: new Date(2015, 1, 1, 0, 0, 0, 0)
-        }
-      ]);
-
-    scope = $rootScope.$new();
+    $scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+      $scope: $scope
     });
   }));
 
-  it('should attach a list of events to the scope', function () {
-    $httpBackend.flush();
-    expect(scope.events.length).toBe(2);
+  it('should do something', function() {
+
   });
+  
+  xit('should show user logged in', function() {
+    $httpBackend.expectGET('/api/me')
+      .respond({
+        provider: 'local',
+        name: 'Test User',
+        email: 'test@test.com',
+        password: 'test',
+        events: [
+          {
+            name: 'Christmas',
+            date: new Date('12/25/2014')
+          }, {
+            name: 'New Year\'s',
+            date: new Date('01/01/2015')
+          }
+        ]
+      });
+//    expect($scope.isLoggedIn).toBe(true);
+    $httpBackend.flush();
+  });
+
 });
