@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('countdownApp')
-  .controller('MainCtrl', function ($scope, Auth, $http, socket) {
-    $scope.events = [];
-    $scope.newEvent = {
+  .controller('MainCtrl', function($scope, Auth, EventService, $http, socket) {
+    var emptyEvent = {
       name: '',
       date: undefined
     };
+    $scope.events = [];
+    $scope.newEvent = emptyEvent;
 
     $scope.isLoggedIn = function() {
       return Auth.isLoggedIn();
@@ -16,21 +17,18 @@ angular.module('countdownApp')
      * Events
      */
     if (Auth.isLoggedIn()) {
-      $http.get('/api/events').success(function(events) {
+      EventService.getList().then(function(events) {
         $scope.events = events;
         socket.syncUpdates('event', $scope.events);
       });
     }
 
-    $scope.addEvent = function() {
-      if($scope.newEvent.name === '' || $scope.newEvent.date === undefined) {
+    $scope.addEvent = function(newEvent) {
+      if (newEvent.name === '' || newEvent.date === undefined) {
         return;
       }
-      $http.post('/api/events', $scope.newEvent);
-      $scope.newEvent = {
-        name: '',
-        date: undefined
-      };
+      EventService.create(newEvent);
+      $scope.newEvent = emptyEvent;
     };
 
     var tomorrow = new Date();
@@ -50,12 +48,12 @@ angular.module('countdownApp')
     };
 
     /*
-    $scope.deleteEvent = function(event) {
-      $http.delete('/api/events/' + event._id);
-    };
+     $scope.deleteEvent = function(event) {
+     $http.delete('/api/events/' + event._id);
+     };
 
-    $scope.$on('$destroy', function () {
-      socket.unsyncUpdates('event');
-    });
+     $scope.$on('$destroy', function () {
+     socket.unsyncUpdates('event');
+     });
      */
   });
