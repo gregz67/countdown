@@ -31,6 +31,7 @@
     "inject": true,
     "it": true,
     "xit": true,
+    "spyOn": true,
     "expect": true,
     "browser": true,
     "element": true,
